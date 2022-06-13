@@ -1,5 +1,5 @@
-# gon
-- Chrome extension that notify for each website you specify.
+# Peacekeeper
+- Peacekeeper will notify you for each website you specify.
 - TODO: link to chrome web store
 
 # Screenshot
