@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Peacekeeper",
+  "version": "0.0.1",
+  "description": "Peacekeeper will notify you for each website you specify.",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "content.js",
+        "sweetalert2.all.min.js"
+      ],
+      "matches": [
+        "*://*/*"
+      ]
+    }
+  ],
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*/*"
+  ],
+  "icons": {
+    "128": "pk-logo-128.png",
+    "48": "pk-logo-48.png",
+    "16": "pk-logo-16.png"
+  },
+  "options_page": "options.html",
+  "action": {
+    "default_icon": "pk-logo-48.png",
+    "default_title": "Peacekeeper"
+  }
+}
