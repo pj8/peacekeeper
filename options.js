@@ -23,11 +23,16 @@ const saveObjectInLocalStorage = async function(obj) {
 };
 
 document.getElementById("saveConfigs").addEventListener("click",async function(e){
-  let jsonConfigs = JSON.parse(document.getElementById("textareaConfigs").value);
-  await saveObjectInLocalStorage({'configs': jsonConfigs});
+  if(document.getElementById("textareaConfigs").value){
+    let jsonConfigs = JSON.parse(document.getElementById("textareaConfigs").value);
+    await saveObjectInLocalStorage({'configs': jsonConfigs});
+    alert('Configs are saved.');
+  }
 },false);
 
 (async function() {
   let configs = await getObjectFromLocalStorage('configs');
-  document.getElementById("textareaConfigs").innerHTML = JSON.stringify(configs, null, 2);
+  if(configs){
+    document.getElementById("textareaConfigs").innerHTML = JSON.stringify(configs, null, 2);
+  }
 })();
