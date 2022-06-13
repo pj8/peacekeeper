@@ -3,4 +3,7 @@
 - TODO: link to chrome web store
 
 # Screenshot
-- TODO: screenshot
+## Before
+- ...
+## After
+- ...
