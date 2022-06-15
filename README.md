@@ -1,6 +1,6 @@
 # Peacekeeper
 - Peacekeeper will notify you for each website you specify.
-- TODO: link to chrome web store
+- [Chrome Web Store : Peacekeeper](https://chrome.google.com/webstore/detail/peacekeeper/dfhhnlmecdgbidblhlidkgiagikjgfip)
 
 ## Screenshot
 ### Before
