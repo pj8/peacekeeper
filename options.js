@@ -31,17 +31,20 @@ document.getElementById("saveConfigs").addEventListener("click",async function(e
 },false);
 
 (async function() {
-  // set sample
+  // set sample on #textareaSample
   document.getElementById("textareaSample").innerHTML = JSON.stringify(getDefaultConfigs(), null, 2);
 
+  // get configs from storage
   let configs = await getObjectFromLocalStorage('configs');
-  if(! configs){
-    // set default configs
-    return document.getElementById("textareaConfigs").innerHTML = JSON.stringify(getDefaultConfigs(), null, 2);
+  if(configs){
+    // set user's configs on #textareaConfigs
+    return document.getElementById("textareaConfigs").innerHTML = JSON.stringify(configs, null, 2);
   }
 
-  // set user's configs
-  document.getElementById("textareaConfigs").innerHTML = JSON.stringify(configs, null, 2);
+  // save & set default configs on #textareaConfigs
+  configs = getDefaultConfigs();
+  await saveObjectInLocalStorage({'configs': configs});
+  return document.getElementById("textareaConfigs").innerHTML = JSON.stringify(configs, null, 2);
 })();
 
 function getDefaultConfigs(){
