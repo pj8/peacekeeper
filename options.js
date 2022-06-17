@@ -24,9 +24,13 @@ const saveObjectInLocalStorage = async function(obj) {
 
 document.getElementById("saveConfigs").addEventListener("click",async function(e){
   if(document.getElementById("textareaConfigs").value){
-    let jsonConfigs = JSON.parse(document.getElementById("textareaConfigs").value);
-    await saveObjectInLocalStorage({'configs': jsonConfigs});
-    alert('Configs are saved.');
+    try{
+      let jsonConfigs = JSON.parse(document.getElementById("textareaConfigs").value);
+      await saveObjectInLocalStorage({'configs': jsonConfigs});
+      alert('Configs are saved.');
+    }catch(error){
+      alert(error.message);
+    }
   }
 },false);
 
@@ -93,7 +97,7 @@ function getDefaultConfigs(){
       "toast": {
         "position": "center",
         "icon": "error",
-        "title": "Hey, Watch out! It's PRODUCTION!!!",
+        "title": "It's PRODUCTION!!!",
         "showConfirmButton": false,
         "timer": 1000
       },
