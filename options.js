@@ -60,6 +60,15 @@ function getDefaultConfigs(){
     },
     {
       "alert": false,
+      "favicon": false,
+      "style": {
+        "backgroundColor": "blue"
+      },
+      "toast": false,
+      "url": "https://dev-.+-admin.+"
+    },
+    {
+      "alert": false,
       "favicon": {
         "rel": "shortcut icon",
         "type": "image/x-icon",
