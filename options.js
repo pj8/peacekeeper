@@ -66,6 +66,15 @@ function getDefaultConfigs(){
       "alert": false,
       "favicon": false,
       "style": {
+        "backgroundColor": "rgb(48,209,88)"
+      },
+      "toast": false,
+      "url": "http:\/\/localhost:(.+83|8080)"
+    },
+    {
+      "alert": false,
+      "favicon": false,
+      "style": {
         "backgroundColor": "rgb(10,132,255)"
       },
       "toast": false,
