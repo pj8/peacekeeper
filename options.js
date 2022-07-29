@@ -60,7 +60,7 @@ function getDefaultConfigs(){
         "backgroundColor": "rgb(48,209,88)"
       },
       "toast": false,
-      "url": "http:\/\/127.0.0.1:(.+83|8080)"
+      "url": "http:\/\/(127.0.0.1|localhost):(.+83|8080)"
     },
     {
       "alert": false,
