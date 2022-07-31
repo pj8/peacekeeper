@@ -54,6 +54,7 @@ document.getElementById("saveConfigs").addEventListener("click",async function(e
 function getDefaultConfigs(){
   return [
       {
+        "name": "localhost",
         "alert": false,
         "favicon": false,
         "style": {
@@ -63,6 +64,7 @@ function getDefaultConfigs(){
         "url": "^http://(127.0.0.1|localhost):(.+83|8080)"
       },
       {
+        "name": "development",
         "alert": false,
         "favicon": false,
         "style": {
@@ -72,6 +74,7 @@ function getDefaultConfigs(){
         "url": "^https://dev-.+-admin.+"
       },
       {
+        "name": "staging",
         "alert": false,
         "favicon": {
           "rel": "shortcut icon",
@@ -85,6 +88,7 @@ function getDefaultConfigs(){
         "url": "^https:\/\/.*stage-admin.+|^https:\/\/admin-.+stage.+"
       },
       {
+        "name": "production",
         "alert": false,
         "favicon": {
           "rel": "shortcut icon",
