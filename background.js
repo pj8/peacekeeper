@@ -2,16 +2,16 @@ chrome.tabs.onUpdated.addListener(async function(tabId, changeInfo, tab) {
   if (changeInfo.status !== "complete") return;
   if(! tab.url) return;
 
-  let configs = await getObjectFromLocalStorage('configs');
+  let configs = await getObjectFromStorage('configs');
   if(! configs) return;
 
-  configs.forEach(config => {
+  configs.some(config => {
     let regex = new RegExp(config.url);
-    if(! regex) return;
+    if(! regex) return false;
     if(tab.url.match(regex)){
       let message = { type: "notify", config: config };
       chrome.tabs.sendMessage(tabId, message, null);
-      return;
+      return true;
     }
   });
 });
@@ -26,23 +26,11 @@ chrome.runtime.onInstalled.addListener(function(details){
   }
 });
 
-const getObjectFromLocalStorage = async function(key) {
+const getObjectFromStorage = async function(key) {
   return new Promise((resolve, reject) => {
     try {
-      chrome.storage.local.get(key, function(value) {
+      chrome.storage.sync.get(key, function(value) {
         resolve(value[key]);
-      });
-    } catch (ex) {
-      reject(ex);
-    }
-  });
-};
-
-const saveObjectInLocalStorage = async function(obj) {
-  return new Promise((resolve, reject) => {
-    try {
-      chrome.storage.local.set(obj, function() {
-        resolve();
       });
     } catch (ex) {
       reject(ex);
