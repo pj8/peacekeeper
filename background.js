@@ -5,16 +5,14 @@ chrome.tabs.onUpdated.addListener(async function(tabId, changeInfo, tab) {
   let configs = await getObjectFromStorage('configs');
   if(! configs) return;
 
-  configs.some(config => {
-    let regex = new RegExp(config.url);
-    if(! regex) return false;
-    if(tab.url.match(regex)){
-      let message = { type: "notify", config: config };
-      chrome.tabs.sendMessage(tabId, message, null);
-      return true;
-    }
-  });
+  let matchedConfig = getMatchedConfig(tab.url, configs);
+  chrome.tabs.sendMessage(tabId, { type: "notify", config: matchedConfig}, null);
 });
+
+function getMatchedConfig(url, configs){
+  let origin = new URL(url).origin;
+  return configs.find(config => origin.match(new RegExp(config.url)));
+}
 
 chrome.action.onClicked.addListener(function(tab) {
   chrome.tabs.create({url: 'options.html'});

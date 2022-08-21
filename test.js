@@ -1,56 +1,3 @@
- const getObjectFromLocalStorage = async function(key) {
-  return new Promise((resolve, reject) => {
-    try {
-      chrome.storage.sync.get(key, function(value) {
-        resolve(value[key]);
-      });
-    } catch (ex) {
-      reject(ex);
-    }
-  });
-};
-
-const saveObjectInStorage = async function(obj) {
-  return new Promise((resolve, reject) => {
-    try {
-      chrome.storage.sync.set(obj, function() {
-        resolve();
-      });
-    } catch (ex) {
-      reject(ex);
-    }
-  });
-};
-
-document.getElementById("saveConfigs").addEventListener("click",async function(e){
-  if(document.getElementById("textareaConfigs").value){
-    try{
-      let jsonConfigs = JSON.parse(document.getElementById("textareaConfigs").value);
-      await saveObjectInStorage({'configs': jsonConfigs});
-      alert('Configs are saved.');
-    }catch(error){
-      alert(error.message);
-    }
-  }
-},false);
-
-(async function() {
-  // set sample on #textareaSample
-  document.getElementById("textareaSample").innerHTML = JSON.stringify(getDefaultConfigs(), null, 2);
-
-  // get configs from storage
-  let configs = await getObjectFromLocalStorage('configs');
-  if(configs){
-    // set user's configs on #textareaConfigs
-    return document.getElementById("textareaConfigs").innerHTML = JSON.stringify(configs, null, 2);
-  }
-
-  // save & set default configs on #textareaConfigs
-  configs = getDefaultConfigs();
-  await saveObjectInStorage({'configs': configs});
-  return document.getElementById("textareaConfigs").innerHTML = JSON.stringify(configs, null, 2);
-})();
-
 function getDefaultConfigs(){
   return [
       {
@@ -103,3 +50,45 @@ function getDefaultConfigs(){
       }
   ];
 }
+
+function getMatchedConfig(url, configs){
+  let origin = new URL(url).origin;
+  return configs.find(config => origin.match(new RegExp(config.url)));
+}
+
+function testUrl(expect, url){
+  let configs = getDefaultConfigs();
+  let result = getMatchedConfig(url, configs);
+
+  if(! result){
+    result = {name: 'unknown'};
+  }
+
+  console.assert(expect === result.name, url + ' should be match as ' + expect + ', but matched ' + result.name);
+
+  if(expect === result.name){
+    console.log('- [x] ' + url + ' matched as ' + expect);
+  }
+}
+
+testUrl('localhost','http://localhost:8080');
+testUrl('localhost','http://localhost:8083');
+testUrl('localhost','http://localhost:8083/');
+testUrl('localhost','http://localhost:8083/path');
+testUrl('development', 'https://dev-foo-bar-admin-hoge.foo-bar.hoge.test');
+testUrl('development', 'https://dev-foo-bar-admin-hoge.foo-bar.hoge.test/');
+testUrl('development', 'https://dev-foo-bar-admin-hoge.foo-bar.hoge.test/path');
+testUrl('staging', 'https://stage-admin-foo.bar.test');
+testUrl('staging', 'https://stage-admin-foo.bar.test/');
+testUrl('staging', 'https://stage-admin-foo.bar.test/path');
+testUrl('staging', 'https://admin-feature-stage-foo.bar.test');
+testUrl('staging', 'https://admin-feature-stage-foo.bar.test/');
+testUrl('staging', 'https://admin-feature-stage-foo.bar.test/login');
+testUrl('production', 'https://admin-feature-foo.bar.test');
+testUrl('production', 'https://admin-feature-foo.bar.test/');
+testUrl('production', 'https://admin-feature-foo.bar.test/path');
+testUrl('production', 'https://foo-admin-bar.foo.test');
+testUrl('production', 'https://foo-admin-bar.foo.test/');
+testUrl('production', 'https://foo-admin-bar.foo.test/path');
+testUrl('unknown', 'https://foo.test');
+testUrl('unknown', 'https://foo.test/?q=admin-feature-foo.bar.test');
