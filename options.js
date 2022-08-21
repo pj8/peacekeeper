@@ -61,7 +61,7 @@ function getDefaultConfigs(){
           "backgroundColor": "rgb(48,209,88)"
         },
         "toast": false,
-        "url": "^http://(127.0.0.1|localhost):(.+83|8080)"
+        "url": "^https?://(127.0.0.1|localhost):(.+83|8080)"
       },
       {
         "name": "development",
@@ -71,7 +71,7 @@ function getDefaultConfigs(){
           "backgroundColor": "rgb(10,132,255)"
         },
         "toast": false,
-        "url": "^https://dev-.+-admin.+"
+        "url": "^https?://dev-.+-admin.+"
       },
       {
         "name": "staging",
@@ -85,7 +85,7 @@ function getDefaultConfigs(){
           "backgroundColor": "rgb(255,214,10)"
         },
         "toast": false,
-        "url": "^https:\/\/.*stage-admin.+|^https:\/\/admin-.+stage.+"
+        "url": "^https?:\/\/.*stage-admin.+|^https?:\/\/admin-.+stage.+"
       },
       {
         "name": "production",
@@ -99,7 +99,7 @@ function getDefaultConfigs(){
           "backgroundColor": "rgb(255,69,58)"
         },
         "toast": false,
-        "url": "^https:\/\/(?<!(dev|test|stg|stage))admin.+"
+        "url": "^https?:\/\/.*admin.+"
       }
   ];
 }
