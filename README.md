@@ -52,18 +52,3 @@
 ```json
 "style": false,
 ```
-### toast
-- Show popup box via [`sweetalert2`](https://github.com/sweetalert2/sweetalert2)
-```json
-"toast": {
-  "icon": "error",
-  "position": "center",
-  "showConfirmButton": false,
-  "timer": 1000,
-  "title": "Hey, Watch out! It's PRODUCTION!!!"
-},
-```
-- Disable to show popup box
-```json
-"toast": false,
-```
