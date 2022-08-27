@@ -60,7 +60,6 @@ function getDefaultConfigs(){
         "style": {
           "backgroundColor": "rgb(48,209,88)"
         },
-        "toast": false,
         "url": "^https?://(127.0.0.1|localhost):(.+83|8080)"
       },
       {
@@ -70,7 +69,6 @@ function getDefaultConfigs(){
         "style": {
           "backgroundColor": "rgb(10,132,255)"
         },
-        "toast": false,
         "url": "^https?://dev-.+-admin.+"
       },
       {
@@ -84,7 +82,6 @@ function getDefaultConfigs(){
         "style": {
           "backgroundColor": "rgb(255,214,10)"
         },
-        "toast": false,
         "url": "^https?:\/\/.*stage-admin.+|^https?:\/\/admin-.+stage.+"
       },
       {
@@ -98,7 +95,6 @@ function getDefaultConfigs(){
         "style": {
           "backgroundColor": "rgb(255,69,58)"
         },
-        "toast": false,
         "url": "^https?:\/\/.*admin.+"
       }
   ];

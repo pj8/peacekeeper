@@ -9,8 +9,7 @@
   "content_scripts": [
     {
       "js": [
-        "content.js",
-        "sweetalert2.all.min.js"
+        "content.js"
       ],
       "matches": [
         "*://*/*"
