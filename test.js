@@ -29,7 +29,7 @@ function getDefaultConfigs() {
       style: {
         backgroundColor: "rgb(255,214,10)",
       },
-      url: "^https?://.*stage-admin.+|^https?://admin-.+stage.+",
+      url: "^https?://.*stage-admin.+|^https?://admin-.+stage.+|^https?://stg-admin.+",
     },
     {
       name: "production",
@@ -83,6 +83,9 @@ testUrl("staging", "https://stage-admin-foo.bar.test/path");
 testUrl("staging", "https://admin-feature-stage-foo.bar.test");
 testUrl("staging", "https://admin-feature-stage-foo.bar.test/");
 testUrl("staging", "https://admin-feature-stage-foo.bar.test/login");
+testUrl("staging", "https://stg-admin.bar.test");
+testUrl("staging", "https://stg-admin.bar.test/");
+testUrl("staging", "https://stg-admin.bar.test/path");
 testUrl("production", "https://admin-feature-foo.bar.test");
 testUrl("production", "https://admin-feature-foo.bar.test/");
 testUrl("production", "https://admin-feature-foo.bar.test/path");

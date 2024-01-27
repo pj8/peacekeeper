@@ -97,7 +97,7 @@ function getDefaultConfigs() {
       style: {
         backgroundColor: "rgb(255,214,10)",
       },
-      url: "^https?://.*stage-admin.+|^https?://admin-.+stage.+",
+      url: "^https?://.*stage-admin.+|^https?://admin-.+stage.+|^https?://stg-admin.+",
     },
     {
       name: "production",
