@@ -14,8 +14,9 @@ chrome.tabs.onUpdated.addListener(async function (tabId, changeInfo, tab) {
 });
 
 function getMatchedConfig(url, configs) {
-  let origin = new URL(url).origin;
-  return configs.find((config) => origin.match(new RegExp(config.url)));
+  const urlObj = new URL(url);
+  const originAndPath = urlObj.origin + urlObj.pathname;
+  return configs.find((config) => originAndPath.match(new RegExp(config.url)));
 }
 
 chrome.action.onClicked.addListener(function (tab) {

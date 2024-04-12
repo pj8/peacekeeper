@@ -29,7 +29,7 @@ function getDefaultConfigs() {
       style: {
         backgroundColor: "rgb(255,214,10)",
       },
-      url: "^https?://.*stage-admin.+|^https?://admin-.+stage.+|^https?://stg-admin.+",
+      url: "^https?://.*stage-admin.+|^https?://admin-.+stage.+|^https?://stg-admin.+|^https://github.com/pj8/(peacekeeper|Pj8.SentryModule|sssh|dbdb|ms-teams-notify-orb|github-backlog-sync|vscode-twig-goto|vscode-bear-goto|image)",
     },
     {
       name: "production",
@@ -48,8 +48,9 @@ function getDefaultConfigs() {
 }
 
 function getMatchedConfig(url, configs) {
-  let origin = new URL(url).origin;
-  return configs.find((config) => origin.match(new RegExp(config.url)));
+  const urlObj = new URL(url);
+  const originAndPath = urlObj.origin + urlObj.pathname;
+  return configs.find((config) => originAndPath.match(new RegExp(config.url)));
 }
 
 function testUrl(expect, url) {
@@ -86,6 +87,8 @@ testUrl("staging", "https://admin-feature-stage-foo.bar.test/login");
 testUrl("staging", "https://stg-admin.bar.test");
 testUrl("staging", "https://stg-admin.bar.test/");
 testUrl("staging", "https://stg-admin.bar.test/path");
+testUrl("staging", "https://github.com/pj8/peacekeeper");
+testUrl("staging", "https://github.com/pj8/sssh");
 testUrl("production", "https://admin-feature-foo.bar.test");
 testUrl("production", "https://admin-feature-foo.bar.test/");
 testUrl("production", "https://admin-feature-foo.bar.test/path");
@@ -93,4 +96,5 @@ testUrl("production", "https://foo-admin-bar.foo.test");
 testUrl("production", "https://foo-admin-bar.foo.test/");
 testUrl("production", "https://foo-admin-bar.foo.test/path");
 testUrl("unknown", "https://foo.test");
-testUrl("unknown", "https://foo.test/?q=admin-feature-foo.bar.test");
+testUrl("unknown", "https://foo.test/?q=stage-admin-feature-foo.bar.test");
+testUrl("unknown", "https://foo.test/foo?q=admin-feature-foo.bar.test");

@@ -97,7 +97,7 @@ function getDefaultConfigs() {
       style: {
         backgroundColor: "rgb(255,214,10)",
       },
-      url: "^https?://.*stage-admin.+|^https?://admin-.+stage.+|^https?://stg-admin.+",
+      url: "^https?://.*stage-admin.+|^https?://admin-.+stage.+|^https?://stg-admin.+|^https://github.com/pj8/(peacekeeper|Pj8.SentryModule|sssh|dbdb|ms-teams-notify-orb|github-backlog-sync|vscode-twig-goto|vscode-bear-goto|image)",
     },
     {
       name: "production",
