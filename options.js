@@ -110,7 +110,7 @@ function getDefaultConfigs() {
       style: {
         backgroundColor: "rgb(255,69,58)",
       },
-      url: "^https?://.*admin.+",
+      url: "^https?://.*admin.+|^https://github.com/pj8/peacekeeper.*",
     },
   ];
 }

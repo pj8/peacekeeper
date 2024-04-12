@@ -42,14 +42,15 @@ function getDefaultConfigs() {
       style: {
         backgroundColor: "rgb(255,69,58)",
       },
-      url: "^https?://.*admin.+",
+      url: "^https?://.*admin.+|^https://github.com/pj8/peacekeeper.*",
     },
   ];
 }
 
 function getMatchedConfig(url, configs) {
-  let origin = new URL(url).origin;
-  return configs.find((config) => origin.match(new RegExp(config.url)));
+  const urlObj = new URL(url);
+  const originAndPath = urlObj.origin + urlObj.pathname;
+  return configs.find((config) => originAndPath.match(new RegExp(config.url)));
 }
 
 function testUrl(expect, url) {
@@ -92,5 +93,7 @@ testUrl("production", "https://admin-feature-foo.bar.test/path");
 testUrl("production", "https://foo-admin-bar.foo.test");
 testUrl("production", "https://foo-admin-bar.foo.test/");
 testUrl("production", "https://foo-admin-bar.foo.test/path");
+testUrl("production", "https://github.com/pj8/peacekeeper");
 testUrl("unknown", "https://foo.test");
-testUrl("unknown", "https://foo.test/?q=admin-feature-foo.bar.test");
+testUrl("unknown", "https://foo.test/?q=stage-admin-feature-foo.bar.test");
+testUrl("unknown", "https://foo.test/foo?q=admin-feature-foo.bar.test");
