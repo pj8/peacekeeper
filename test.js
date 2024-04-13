@@ -29,7 +29,7 @@ function getDefaultConfigs() {
       style: {
         backgroundColor: "rgb(255,214,10)",
       },
-      url: "^https?://.*stage-admin.+|^https?://admin-.+stage.+|^https?://stg-admin.+|^https://github.com/pj8/(peacekeeper|Pj8.SentryModule|sssh|dbdb|ms-teams-notify-orb|github-backlog-sync|vscode-twig-goto|vscode-bear-goto|image)",
+      url: "^https?://[^/]*stage-admin.+|^https?://admin-.+stage.+|^https?://stg-admin.+|^https://github.com/pj8/(peacekeeper|Pj8.SentryModule|sssh|dbdb|ms-teams-notify-orb|github-backlog-sync|vscode-twig-goto|vscode-bear-goto|image)",
     },
     {
       name: "production",
@@ -42,7 +42,7 @@ function getDefaultConfigs() {
       style: {
         backgroundColor: "rgb(255,69,58)",
       },
-      url: "^https?://.*admin.+",
+      url: "^https?://[^/]*admin.+",
     },
   ];
 }
@@ -98,3 +98,6 @@ testUrl("production", "https://foo-admin-bar.foo.test/path");
 testUrl("unknown", "https://foo.test");
 testUrl("unknown", "https://foo.test/?q=stage-admin-feature-foo.bar.test");
 testUrl("unknown", "https://foo.test/foo?q=admin-feature-foo.bar.test");
+testUrl("unknown", "https://manage.test/dashboard/dev-admin/x");
+testUrl("unknown", "https://manage.test/dashboard/stage-admin/x");
+testUrl("unknown", "https://manage.test/dashboard/admin/x");
