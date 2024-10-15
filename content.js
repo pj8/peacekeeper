@@ -22,7 +22,7 @@
 
     // style
     if (config.style) {
-      body.style.backgroundColor = config.style.backgroundColor;
+      Object.assign(body.style, config.style);
     }
 
     // favicon
