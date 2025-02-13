@@ -29,7 +29,7 @@ function getDefaultConfigs() {
       style: {
         backgroundColor: "rgba(255,214,10,0.5)",
       },
-      url: "^https?://[^/]*stage-admin.+|^https?://admin-.+stage.+|^https?://stg-admin.+",
+      url: "^https?://[^/]*stage-admin.+|^https?://admin-.+stage.+|^https?://stg-admin.+|^https?://stage-.+",
     },
     {
       name: "production",
@@ -42,7 +42,7 @@ function getDefaultConfigs() {
       style: {
         backgroundColor: "rgba(255,69,58,0.5)",
       },
-      url: "^https?://[^/]*admin.+",
+      url: "^https?://[^/]*admin.+|^https?://t.-i......\.s.......\.c.\.j.",
     },
     {
       name: "repositories",
@@ -50,7 +50,7 @@ function getDefaultConfigs() {
       style: {
         background: "linear-gradient(to right, rgba(255,214,10,0.5), rgba(255,69,58,0.5))",
       },
-      url: "^https://github.com/pj8/(peacekeeper|Pj8.SentryModule|sssh|dbdb|ms-teams-notify-orb|github-backlog-sync|vscode-twig-goto|vscode-bear-goto|image)",
+      url: "^https://github.com/pj8/(peacekeeper|Pj8.SentryModule|sssh|dbdb|ms-teams-notify-orb|github-backlog-sync|vscode-twig-goto|vscode-bear-goto|image|qiq-vscode-extension|composer-aws-assume-role-plugin)",
     },
   ];
 }
@@ -95,12 +95,14 @@ testUrl("staging", "https://admin-feature-stage-foo.bar.test/login");
 testUrl("staging", "https://stg-admin.bar.test");
 testUrl("staging", "https://stg-admin.bar.test/");
 testUrl("staging", "https://stg-admin.bar.test/path");
+testUrl("staging", "https://stage-foo-bar.foo.bar.test");
 testUrl("production", "https://admin-feature-foo.bar.test");
 testUrl("production", "https://admin-feature-foo.bar.test/");
 testUrl("production", "https://admin-feature-foo.bar.test/path");
 testUrl("production", "https://foo-admin-bar.foo.test");
 testUrl("production", "https://foo-admin-bar.foo.test/");
 testUrl("production", "https://foo-admin-bar.foo.test/path");
+testUrl("production", "https://tx-ixxxxxx.sxxxxxxx.cx.jx");
 testUrl("repositories", "https://github.com/pj8/peacekeeper");
 testUrl("repositories", "https://github.com/pj8/Pj8.SentryModule");
 testUrl("repositories", "https://github.com/pj8/sssh");

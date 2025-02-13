@@ -97,7 +97,7 @@ function getDefaultConfigs() {
       style: {
         backgroundColor: "rgba(255,214,10,0.5)",
       },
-      url: "^https?://[^/]*stage-admin.+|^https?://admin-.+stage.+|^https?://stg-admin.+",
+      url: "^https?://[^/]*stage-admin.+|^https?://admin-.+stage.+|^https?://stg-admin.+|^https?://stage-.+",
     },
     {
       name: "production",
@@ -110,7 +110,7 @@ function getDefaultConfigs() {
       style: {
         backgroundColor: "rgba(255,69,58,0.5)",
       },
-      url: "^https?://[^/]*admin.+",
+      url: "^https?://[^/]*admin.+|^https?://t.-i......\.s.......\.c.\.j.",
     },
     {
       name: "repositories",
@@ -118,7 +118,7 @@ function getDefaultConfigs() {
       style: {
         background: "linear-gradient(to right, rgba(255,214,10,0.5), rgba(255,69,58,0.5))",
       },
-      url: "^https://github.com/pj8/(peacekeeper|Pj8.SentryModule|sssh|dbdb|ms-teams-notify-orb|github-backlog-sync|vscode-twig-goto|vscode-bear-goto|image)",
+      url: "^https://github.com/pj8/(peacekeeper|Pj8.SentryModule|sssh|dbdb|ms-teams-notify-orb|github-backlog-sync|vscode-twig-goto|vscode-bear-goto|image|qiq-vscode-extension|composer-aws-assume-role-plugin)",
     },
   ];
 }
